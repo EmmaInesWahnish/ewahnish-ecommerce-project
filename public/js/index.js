@@ -55,7 +55,6 @@ form.addEventListener('submit', function (e) {
     if (input.value) {
         socket.emit('chat message', message);
         input.value = '';
-        email.value = 'c@m';
     }
 });
 
