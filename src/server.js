@@ -72,7 +72,14 @@ app.all('*', (req, res) => {
 io.on('connection', async (socket) => {
     let user_session  = socket.request.session;
 
-    let userEmail = user_session.user.email
+    let userEmail;
+
+    if(user_session.userEmail) {
+        userEmail = user_session.user.email;
+    } 
+    else {
+        userEmail ='c@c';
+    }
 
     try {
         list = await Messages.getAll();
