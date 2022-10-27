@@ -20,7 +20,7 @@ const renderProducts = () => {
     let theValue;
     let idProducts=[];
 
-    document.getElementById('activeCart').innerHTML = "No hay carrito activo";
+    document.getElementById('activeCart').innerHTML = "";
     document.getElementById('cartNumber').innerHTML = "";
     document.getElementById('productCards').innerHTML = "";
     document.getElementById('newProduct').innerHTML = "";
@@ -31,6 +31,7 @@ const renderProducts = () => {
     document.getElementById('root').innerHTML = "";
     document.getElementById('active').innerHTML = "";
     document.getElementById('thisCart').innerHTML = "";
+    document.getElementById('orderButtons').innerHTML = "";
 
 
     const homePage = document.getElementById("homePage")
@@ -50,7 +51,7 @@ const renderProducts = () => {
 
             let whichDb = data.whichDb;
 
-            this_user = { ...data.user.user }
+            this_user = { ...data.user }
 
             if (this_user.cart_number && this_user.cart != "" && this_user.cart_number != null && this_user.cart_number != "0") {
                 cartId = this_user.cart_number;
@@ -77,7 +78,7 @@ const renderProducts = () => {
 
                 cards.setAttribute('class', 'flex-container-card')
 
-                cards.innerHTML = `<div id=${product.id} class="card-header center big_id" width="300px" >
+                cards.innerHTML = `<div id=${product.id} class="card-header center big_id card h-100" width="300px" >
                                         <h6>${product.id}</h6>
                                         <h6>${product.codigo}</h6>
                                         <h6><i>${product.nombre}</i></h6> 

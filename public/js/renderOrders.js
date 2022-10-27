@@ -1,5 +1,5 @@
 import renderHome from './renderHome.js';
-import deleteACart from './deleteACartRightNow.js'
+import emptyACart from './emptyACart.js';
 
 const renderOrders = (orderNumber, user_cart) => {
     document.getElementById('activeCart').innerHTML = "";
@@ -10,6 +10,7 @@ const renderOrders = (orderNumber, user_cart) => {
     document.getElementById('myOrder').innerText = "";
     document.getElementById('productsInCart').innerHTML = "";
     document.getElementById('root').innerHTML = "";
+    document.getElementById('orderButtons').innerHTML = "";
 
     const homePage = document.getElementById("homePage")
 
@@ -184,7 +185,7 @@ const renderOrders = (orderNumber, user_cart) => {
 
     formSend.addEventListener('click', function () {
 
-        deleteACart(user_cart);
+        emptyACart(user_cart);
 
         let myOrder = {
             delivery_address: theAddress,
