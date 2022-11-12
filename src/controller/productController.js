@@ -1,12 +1,12 @@
 import {
     getAllProducts,
-    getProductsById, 
-    saveProducts, 
+    getProductsById,
+    saveProducts,
     saveProductsArray,
     modifyProductById,
     deleteProductById
-} 
-from '../services/ProductService.js'
+}
+    from '../services/ProductService.js'
 import config from '../configurations/dotenvConfig.js';
 import usersService from '../Models/Users.js';
 import fs from 'fs';
@@ -17,18 +17,10 @@ let result;
 
 export const productsGetAll = async (req, res) => {
     try {
-        try {
-            result = await usersService.findById(req.session.user.id);
-        }
-        catch (error) {
-
-        }
-        cartNumber = result.cart_number;
         const array = await getAllProducts();
         res.json({
             message: 'Lista de productos ',
             products: array,
-            bool: req.session.user.isAdmin,
             whichDb: whichDb,
             user: result
         });
@@ -36,23 +28,6 @@ export const productsGetAll = async (req, res) => {
     catch (error) {
         res.json({
             message: 'No se ha podido recuperar la lista de productos',
-            error: error
-        })
-    }
-}
-
-export const productsInfoAdmin = async (req, res) => {
-    try {
-        res.json({
-            message: 'Informacion',
-            user: req.session.user,
-            bool: req.session.user.isAdmin,
-            whichDb: whichDb
-        });
-    }
-    catch (error) {
-        res.json({
-            message: 'No se ha podido recuperar informacion',
             error: error
         })
     }
@@ -66,7 +41,6 @@ export const productsGetById = async (req, res) => {
             res.json({
                 message: 'Producto encontrado',
                 product: producto,
-                bool: req.session.user.isAdmin,
                 whichDb: whichDb
             })
         } else {
@@ -84,55 +58,47 @@ export const productsGetById = async (req, res) => {
 }
 
 export const productsAddOne = async (req, res) => {
-    if (!req.session.user.isAdmin) {
-        res.json({
-            message: `Ruta ${req.path} metodo ${req.method} no autorizada`,
-            error: -1
-        })
-        req.logger.warn(`Ruta ${req.path} metodo ${req.method} no autorizada ( Informacion de sesion ${req.session})`)
-    } else {
-        let receive = req.body;
-        let producto = {
-            timestamp: Date.now(),
-            nombre: receive.nombre,
-            descripcion: receive.descripcion,
-            codigo: receive.codigo,
-            foto: receive.foto,
-            precio: receive.precio,
-            stock: receive.stock
-        }
-        if (producto) {
+    let receive = req.body;
+    let producto = {
+        timestamp: Date.now(),
+        nombre: receive.nombre,
+        descripcion: receive.descripcion,
+        codigo: receive.codigo,
+        foto: receive.foto,
+        precio: receive.precio,
+        stock: receive.stock
+    }
+    if (producto) {
+        try {
+            const theProductId = await saveProducts(producto);
             try {
-                const theProductId = await saveProducts(producto);
-                try {
-                    const products = await getAllProducts();
-                    res.json({
-                        message: "Producto incorporado",
-                        product: producto,
-                        bool: req.session.user.isAdmin,
-                        theProductId: theProductId,
-                        whichDb: whichDb
-                    })
-                }
-                catch (error) {
-                    res.json({
-                        message: 'No se ha podido obtener la lista de productos',
-                        error: error
-                    })
-                }
+                const products = await getAllProducts();
+                res.json({
+                    message: "Producto incorporado",
+                    product: producto,
+                    theProductId: theProductId,
+                    whichDb: whichDb
+                })
             }
             catch (error) {
                 res.json({
-                    message: 'No se ha podido guardar el producto',
+                    message: 'No se ha podido obtener la lista de productos',
                     error: error
                 })
             }
-        } else {
+        }
+        catch (error) {
             res.json({
-                message: "Los datos suministrados son incorrectos"
+                message: 'No se ha podido guardar el producto',
+                error: error
             })
         }
+    } else {
+        res.json({
+            message: "Los datos suministrados son incorrectos"
+        })
     }
+
 }
 
 export const productsUpdateOne = async (req, res) => {
@@ -238,32 +204,36 @@ export const productsUpdateOne = async (req, res) => {
 }
 
 export const productsDeleteOne = async (req, res) => {
-    if (!req.session.user.isAdmin) {
-        res.json({
-            message: `Ruta ${req.path} metodo ${req.method} no autorizada`,
-            error: -1
-        })
-    } else {
-        const id = req.params.id;
-        try {
-            const removedProduct = await deleteProductById(id);
-            if (removedProduct.length === 0) {
-                res.json({
-                    message: "El producto solicitado no existe"
-                })
-            } else {
+    const id = req.params.id;
+    let producto = []
+    try {
+        producto = await getProductsById(id);
+        if (producto.length != 0) {
+            try {
+                const removedProduct = await deleteProductById(id);
                 res.json({
                     message: "El producto ha sido eliminado",
                     product: removedProduct,
                     whichDb: whichDb
                 })
             }
-        }
-        catch (error) {
+            catch (error) {
+                res.json({
+                    message: "El producto no pudo ser eliminado",
+                    error: error
+                })
+            }
+        } else {
             res.json({
-                message: "El producto no pudo ser eliminado",
-                error: error
+                message: "Producto no encontrado"
             })
         }
     }
+    catch (error) {
+        res.json({
+            message: "Se produjo un error al buscar el producto",
+            error: error
+        })
+    }
+
 }

@@ -20,6 +20,7 @@ const renderProducts = () => {
     let this_user;
     let theValue;
     let idProducts = [];
+    let isAdmin = 'true';
 
     document.getElementById('activeCart').innerHTML = "";
     document.getElementById('cartNumber').innerHTML = "";
@@ -54,15 +55,13 @@ const renderProducts = () => {
 
             this_user = { ...data.user };
 
-            console.log("This user products >>>> ",this_user._id);
+            isAdmin = localStorage.getItem("isAdmin")
 
-            getAllCarts(this_user._id);
+            getAllCarts();
 
             cartId = localStorage.getItem("ls_cart")
 
-            console.log("Cart id in products >>> ",cartId);
-
-            cartInfo(cartId, this_user.email);
+            cartInfo(cartId, isAdmin);
 
             document.getElementById('cartNumber').innerText = cartId;
             document.getElementById('activeCart').innerText = "";
@@ -107,7 +106,7 @@ const renderProducts = () => {
 
                 const buttons = document.createElement('div');
 
-                if (data.bool) {
+                if (isAdmin === 'true') {
                     let i = findQobject(qobject, product.id);
 
                     for (let j = 0; j < idProducts.length; j++) {
