@@ -18,6 +18,7 @@ const DBS = {
 
 const config = {
   envs,
+  admin_email: process.env.ADMIN_EMAIL,
   persistences:DBS,
   server: {
     PORT: process.env.PORT ?? DEV_PORT,
@@ -25,8 +26,15 @@ const config = {
       base: "/api",
       productos:"/api/productos",
       carrito:"/api/carrito",
-      sessions: "/api/sessions"
-    }
+      sessions: "/api/sessions",
+      orders: "/api/ordenes"
+    },
+    SESSION: {
+      SECRET_KEY: process.env.SESSION_KEY,
+    },
+    JWT: {
+      SECRET_KEY: process.env.JWT_SECRET_KEY,
+    },
   }
 }
 

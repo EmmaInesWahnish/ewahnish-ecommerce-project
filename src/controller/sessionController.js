@@ -1,3 +1,6 @@
+ import jwt from 'jsonwebtoken';
+ import config from '../configurations/dotenvConfig.js';
+
  export const sessionRegister = async(req,res)=>{
     res.status(200).send({status:"success", payload: req.session.user})
 }
@@ -19,10 +22,21 @@ export const sessionLogin = async (req, res) => {
             isAdmin: req.user.isAdmin,
             id:req.user._id
         };
+        const body = { id: req.user.id };
+        const token = jwt.sign({ user: body },  config.server.JWT.SECRET_KEY);
+
 
         let userEmail= req.session.user.email;
 
-        res.status(200).send({status:"success", payload: req.session.user})
+        let decodedToken = jwt.verify(token, config.server.JWT.SECRET_KEY);
+
+        let payload = {
+            token: decodedToken, session: req.session.user
+        }
+
+        console.log("Token >>> ", payload)
+
+        res.status(200).send({status:"success", payload:token, session: req.session.user, jwt})
     }
 
 export const sessionLoginFail = (req,res)=>{
