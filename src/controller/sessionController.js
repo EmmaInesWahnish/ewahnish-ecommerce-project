@@ -36,7 +36,7 @@ export const sessionLogin = async (req, res) => {
 
         console.log("Token >>> ", payload)
 
-        res.status(200).send({status:"success", payload:token, session: req.session.user, jwt})
+        res.status(200).send({status:"success", payload: req.session.user, data:token})
     }
 
 export const sessionLoginFail = (req,res)=>{

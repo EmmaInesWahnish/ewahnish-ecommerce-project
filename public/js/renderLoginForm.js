@@ -85,6 +85,7 @@ const renderLoginForm = () => {
             .then(result => result.json())
             .then(json => theStatus = json)
             .finally(() => {
+                console.log("El estado >>> ",theStatus)
                 if (theStatus.status === 'success') {
                     whichUser = theStatus.payload.id;
                     localStorage.setItem("whichUser",whichUser);                    

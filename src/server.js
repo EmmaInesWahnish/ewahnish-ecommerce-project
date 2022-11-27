@@ -58,7 +58,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/api/productos', routerProducts);
-app.use('/api/carrito',  passport.authenticate('jwt', { session: false }), routerCart);
+app.use('/api/carrito',  routerCart);
 app.use('/api/up', uploadRouter);
 app.use('/', viewsRouter);
 app.use('/api/sessions', sessionRouter);
