@@ -30,7 +30,7 @@ const renderNewProductForm = () => {
   let isAdmin = localStorage.getItem("isAdmin")
 
 
-  if (isAdmin === 'true' ) {
+  if (isAdmin === 'true') {
 
     const newProduct = document.getElementById('newProduct');
     const productForm = document.createElement('div');
@@ -61,12 +61,12 @@ const renderNewProductForm = () => {
 
       <div class="form-group">
         <label for="precio"><b>Precio</b></label>
-        <input id="price" class="form-control" type="number" name="precio" value="">
+        <input id="price" class="form-control" type="number" min=1000 name="precio" value="">
       </div>
 
       <div class="form-group">
         <label for="stock"><b>Stock</b></label>
-        <input id="quantity" class="form-control" type="text" name="stock" value="">
+        <input id="quantity" class="form-control" type="text" min=1 name="stock" value="">
       </div>
 
       <button type="submit" class="btn btn-success" id="addProductButton">Enviar</button>
@@ -80,6 +80,7 @@ const renderNewProductForm = () => {
     let photo = document.getElementById("photo");
     let price = document.getElementById("price");
     let quantity = document.getElementById("quantity");
+    let validated = true;
 
     nomb.addEventListener('change', function () {
       product.nombre = document.getElementById("nomb").value;
@@ -94,11 +95,35 @@ const renderNewProductForm = () => {
       product.foto = document.getElementById("photo").value;
     })
     price.addEventListener('change', function () {
+      let ok = isValid(document.getElementById("price").value, 1000)
       product.precio = document.getElementById("price").value;
+      if (ok) {
+        validated = true
+        product.precio = document.getElementById("price").value;
+      } else {
+        validated = false
+      }
     })
     quantity.addEventListener('change', function () {
-      product.stock = document.getElementById("quantity").value;
+      let ok = isValid(document.getElementById("quantity").value, 0)
+      if (ok) {
+        validated = true
+        product.stock = document.getElementById("quantity").value;
+      }
+      else {
+        validated = false
+      }
     })
+
+    const isValid = (amount, limit) => {
+      if (amount > limit) {
+        return true
+      }
+      else {
+        return false
+      }
+
+    }
 
     let formAdd = document.getElementById("addProductButton");
 

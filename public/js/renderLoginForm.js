@@ -3,6 +3,7 @@ import renderHome from './renderHome.js';
 import createEmptyCart from './createEmptyCart.js';
 import getAllCarts from './getAllCarts.js';
 import getUserCart from './getUserCart.js';
+import { LocalStorageService } from './localStorageService.js';
 
 const renderLoginForm = () => {
 
@@ -85,8 +86,8 @@ const renderLoginForm = () => {
             .then(result => result.json())
             .then(json => theStatus = json)
             .finally(() => {
-                console.log("El estado >>> ",theStatus)
                 if (theStatus.status === 'success') {
+                    LocalStorageService.setItem("token",theStatus.data)
                     whichUser = theStatus.payload.id;
                     localStorage.setItem("whichUser",whichUser);                    
                     cart_number = getAllCarts(whichUser);
