@@ -9,6 +9,7 @@ import showOneProduct from './showOneProduct.js';
 import findQobject from './findQobject.js';
 import cartInfo from './cartInfo.js';
 import getAllCarts from './getAllCarts.js';
+import build_header from './getHeader.js'
 
 let array = [];
 
@@ -47,7 +48,14 @@ const renderProducts = () => {
 
     hide(homePage)
 
-    fetch('/api/productos')
+    const headers_object = build_header();
+
+    const requestOptions = {
+        method: 'GET',
+        headers: headers_object
+    }
+
+    fetch('/api/productos', requestOptions)
         .then(res => res.json())
         .then(data => {
 

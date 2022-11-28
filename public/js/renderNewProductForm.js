@@ -61,7 +61,7 @@ const renderNewProductForm = () => {
 
       <div class="form-group">
         <label for="precio"><b>Precio</b></label>
-        <input id="price" class="form-control" type="number" min=1000 name="precio" value="">
+        <input id="price" class="form-control" type="number" min=300 name="precio" value="">
       </div>
 
       <div class="form-group">
@@ -95,7 +95,7 @@ const renderNewProductForm = () => {
       product.foto = document.getElementById("photo").value;
     })
     price.addEventListener('change', function () {
-      let ok = isValid(document.getElementById("price").value, 1000)
+      let ok = isValid(document.getElementById("price").value, 300)
       product.precio = document.getElementById("price").value;
       if (ok) {
         validated = true

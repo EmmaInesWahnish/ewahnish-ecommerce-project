@@ -57,12 +57,21 @@ initializePassport();
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/api/productos', routerProducts);
-app.use('/api/carrito',  routerCart);
+app.use(
+    '/api/productos', 
+    passport.authenticate("jwt", { session: false }),    
+    routerProducts);
+app.use(
+    '/api/carrito',  
+    passport.authenticate("jwt", { session: false }),    
+    routerCart);
 app.use('/api/up', uploadRouter);
 app.use('/', viewsRouter);
 app.use('/api/sessions', sessionRouter);
-app.use('/api/ordenes',  passport.authenticate('jwt', { session: false }), routerOrder);
+app.use(
+    '/api/ordenes',  
+    passport.authenticate('jwt', { session: false }), 
+    routerOrder);
 
 app.all('*', (req, res) => {
     res.status(404).send({

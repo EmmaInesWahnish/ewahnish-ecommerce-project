@@ -9,8 +9,14 @@ const ProductSchema = new Schema({
     descripcion: { type: String, required: true, max: 100 },
     codigo: { type: String, required: true, max: 100 },
     foto: { type: String, required: true },
-    precio: { type: Number, required: true },
-    stock: { type: Number, required: true }
+    precio: { 
+        type: Number,
+        min: [300, 'Precio inferior al mínimo'], 
+        required: true },
+    stock: { 
+        type: Number,
+        min: [1, 'El stock no puede ser inferior a 1'], 
+        required: true }
 })
 
 ProductSchema.virtual('id').get(function () {
