@@ -1,4 +1,7 @@
 import renderModalUserOrder from "./renderModalUserOrder.js";
+import build_header from "./getHeader.js";
+
+let headers_object = build_header();
 
 const createAnOrder = (cart) => {
 
@@ -10,7 +13,7 @@ const createAnOrder = (cart) => {
 
     const requestOptions = {
         method:'POST',
-        headers: {'Content-Type': 'application/json'},
+        headers: headers_object,
         body: JSON.stringify(cart),
     };
 

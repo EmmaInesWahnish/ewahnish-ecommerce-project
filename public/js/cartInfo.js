@@ -1,4 +1,13 @@
+import build_header from './getHeader.js';
+
 const cartInfo = (cartNumber, isAdmin) => {
+
+    let headers_object = build_header();
+
+    const requestOptions = {
+        method: 'GET',
+        headers: headers_object
+    }
 
     if (isAdmin === 'true') {
         return
@@ -10,7 +19,7 @@ const cartInfo = (cartNumber, isAdmin) => {
 
         let cartProducts = [];
 
-        fetch(productRoute)
+        fetch(productRoute, requestOptions)
             .then(res => res.json())
             .then(data => {
                 if (data.message === "carrito no encontrado") {

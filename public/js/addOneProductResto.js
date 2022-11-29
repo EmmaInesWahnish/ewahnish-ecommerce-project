@@ -1,11 +1,15 @@
 import showOneProduct from './showOneProduct.js'
+import build_header from './getHeader.js';
+
 const addOneProduct = (addedProduct) => {
 
-    const productRoute = `/api/productos/`
+    const productRoute = `/api/productos/`;
+
+    let headers_object = build_header();
 
     const requestOptions = {
         method:'POST',
-        headers: {'Content-Type': 'application/json'},
+        headers: headers_object,
         body: addedProduct,
     };
 

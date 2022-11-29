@@ -1,5 +1,9 @@
 import renderLoginForm from './renderLoginForm.js';
 import renderModalUploadFile from './renderModalUploadFile.js';
+import build_header from './getHeader.js';
+
+let headers_object = build_header();
+
 const renderHome = () => {
 
     document.getElementById('activeCart').innerHTML = "";

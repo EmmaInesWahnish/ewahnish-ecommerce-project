@@ -1,17 +1,27 @@
+import build_header from './getHeader.js';
+
 const deleteACart = (cartId) => {
+
     const productRoute = `/api/carrito/${cartId}`
 
-    fetch(productRoute)
+    let headers_object = build_header();
+
+    const requestOptionsGet = {
+        method: 'GET',
+        headers: headers_object
+    }
+
+    const requestOptionsDelete = {
+        method: 'DELETE',
+        headers: headers_object
+    }
+
+    fetch(productRoute, requestOptionsGet)
         .then(res => res.json())
         .then(data => {
             let howMany = data.productos.length;
             if (howMany <= 0) {
-                fetch(productRoute, {
-                    method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
+                fetch(productRoute, requestOptionsDelete)
                     .then(async res => {
 
                         await res.json();
@@ -24,21 +34,11 @@ const deleteACart = (cartId) => {
 
                 const productRouteTwo = `/api/carrito/${cartId}/productos/${productId}`
 
-                fetch(productRouteTwo, {
-                    method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
+                fetch(productRouteTwo,requestOptionsDelete)
                     .then(async res => {
 
                         const data = await res.json();
-                        fetch(productRoute, {
-                            method: 'DELETE',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            }
-                        })
+                        fetch(productRoute, requestOptionsDelete)
                             .then(async res => {
 
                                 await res.json();

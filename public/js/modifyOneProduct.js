@@ -1,4 +1,8 @@
 import showOneProduct from './showOneProduct.js';
+import build_header from './getHeader.js';
+
+let headers_object = build_header();
+
 const modifyOneProduct = (modifiedProduct) => {
 
     const productRoute = `/api/productos/${modifiedProduct.id}`
@@ -9,7 +13,7 @@ const modifyOneProduct = (modifiedProduct) => {
 
     const requestOptions = {
         method:'PUT',
-        headers: {'Content-Type': 'application/json'},
+        headers: headers_object,
         body: JSON.stringify(modifiedProduct),
     };
 

@@ -9,7 +9,7 @@ import showOneProduct from './showOneProduct.js';
 import findQobject from './findQobject.js';
 import cartInfo from './cartInfo.js';
 import getAllCarts from './getAllCarts.js';
-import build_header from './getHeader.js'
+import build_header from './getHeader.js';
 
 let array = [];
 

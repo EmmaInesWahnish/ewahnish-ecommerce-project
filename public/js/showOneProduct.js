@@ -1,4 +1,12 @@
 import renderHome from './renderHome.js';
+import build_header from './getHeader.js';
+
+let headers_object = build_header();
+
+const requestOptionsGet = {
+    method: 'GET',
+    headers: headers_object
+}
 
 const renderProducts = (productId) => {
 
@@ -28,7 +36,7 @@ const renderProducts = (productId) => {
 
     const productRoute = `/api/productos/${productId}`
 
-    fetch(productRoute)
+    fetch(productRoute, requestOptionsGet)
         .then(res => res.json())
         .then(data => {
             if (data.message === "Producto no encontrado") {

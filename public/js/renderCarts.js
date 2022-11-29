@@ -1,6 +1,14 @@
 import renderHome from './renderHome.js';
 import generateOneOrder from './generateOneOrder.js'
 import renderProducts from './renderProducts.js';
+import build_header from './getHeader.js';
+
+let headers_object = build_header();
+
+const requestOptionsGet = {
+    method: 'GET',
+    headers: headers_object
+}
 
 const renderCarts = (cartNumber) => {
     document.getElementById('activeCart').innerHTML = "";
@@ -38,7 +46,7 @@ const renderCarts = (cartNumber) => {
 
     const productRoute = `/api/carrito/${cartNumber}`
 
-    fetch(productRoute)
+    fetch(productRoute, requestOptionsGet)
         .then(res => res.json())
         .then(data => {
             if (data.message === "carrito no encontrado") {

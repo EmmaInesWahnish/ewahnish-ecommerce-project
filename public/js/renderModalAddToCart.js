@@ -1,3 +1,7 @@
+import build_header from "./getHeader.js";
+
+let headers_object = build_header()
+
 const renderModalAddToCart = (product, quantity, cartId) => {
     let cartProduct = {
         id: product.id,
@@ -15,7 +19,7 @@ const renderModalAddToCart = (product, quantity, cartId) => {
 
     const requestOptions = {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: headers_object,
         body: JSON.stringify(cartProduct),
     };
 

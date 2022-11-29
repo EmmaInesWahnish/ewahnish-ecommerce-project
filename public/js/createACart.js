@@ -1,13 +1,17 @@
 import renderModalAddToCart from './renderModalAddToCart.js'
+import build_header from './getHeader.js';
+
 const createACart = (cart, quantity, product) => {
 
     let cartId = '';
+
+    let headers_object = build_header()
 
     const productRoute = `/api/carrito/`
 
     const requestOptions = {
         method:'POST',
-        headers: {'Content-Type': 'application/json'},
+        headers: headers_object,
         body: JSON.stringify(cart),
     };
 

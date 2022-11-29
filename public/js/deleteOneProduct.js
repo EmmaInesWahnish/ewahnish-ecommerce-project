@@ -1,12 +1,14 @@
+import build_header from './getHeader.js';
+
+let headers_object = build_header();
+
 const deleteOneProduct = (productId) => {
 
     const productRoute = `/api/productos/${productId}`
 
     fetch(productRoute, {
         method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json'
-        }
+        headers: headers_object
     })
         .then(async res => {
             

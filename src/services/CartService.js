@@ -27,7 +27,7 @@ import { persistence }  from "../persistence/PersistenceFactory.js";
     }
 
     const deleteProdInCart = async (id, id_prod, indexp, productArray) => {
-        return await deleteProdById(id, id_prod, indexp, productArray)
+        return await Cart.deleteProdById(id, id_prod, indexp, productArray)
     }
 
 

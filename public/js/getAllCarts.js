@@ -1,4 +1,12 @@
 import getUserCart from "./getUserCart.js";
+import build_header from "./getHeader.js";
+
+let headers_object = build_header();
+
+const requestOptionsGet = {
+    method: 'GET',
+    headers: headers_object
+}
 
 const getAllCarts = async () => {
 
@@ -8,7 +16,7 @@ const getAllCarts = async () => {
 
     let cart_number = '0';
 
-    fetch(cartRoute)
+    fetch(cartRoute, requestOptionsGet)
         .then(res => res.json())
         .then(data => {
             if (data.carrito !== undefined) {

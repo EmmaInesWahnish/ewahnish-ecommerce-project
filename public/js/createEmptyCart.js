@@ -1,7 +1,11 @@
+import build_header from './getHeader.js';
+
 const createEmptyCart = (whichUser) => {
 
     let cartId = '';
 
+    let headers_object = build_header();
+    
     let cart = {
         timestamp: Date.now(),
         user_id:whichUser,
@@ -12,7 +16,7 @@ const createEmptyCart = (whichUser) => {
 
     const requestOptions = {
         method:'POST',
-        headers: {'Content-Type': 'application/json'},
+        headers: headers_object,
         body: JSON.stringify(cart),
     };
 
