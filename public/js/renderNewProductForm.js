@@ -1,5 +1,6 @@
 import addOneProduct from './addOneProduct.js'
 import renderHome from './renderHome.js';
+import renderModalUploadProduct from './renderModalUploadProduct.js';
 let product = {};
 const renderNewProductForm = () => {
 
@@ -91,7 +92,8 @@ const renderNewProductForm = () => {
     code.addEventListener('change', function () {
       product.codigo = document.getElementById("code").value;
     })
-    photo.addEventListener('change', function () {
+    photo.addEventListener('click', function () {
+      document.getElementById("photo").value = renderModalUploadProduct()
       product.foto = document.getElementById("photo").value;
     })
     price.addEventListener('change', function () {
@@ -116,6 +118,7 @@ const renderNewProductForm = () => {
     })
 
     const isValid = (amount, limit) => {
+      console.log(amount,limit)
       if (amount > limit) {
         return true
       }
@@ -128,16 +131,20 @@ const renderNewProductForm = () => {
     let formAdd = document.getElementById("addProductButton");
 
     formAdd.addEventListener('click', function () {
-      let addedProduct = {
-        nombre: product.nombre,
-        descripcion: product.descripcion,
-        codigo: product.codigo,
-        foto: product.foto,
-        precio: product.precio,
-        stock: product.stock,
+      if (!validated) {
+        alert("valores invalidos")
       }
-      addOneProduct(addedProduct);
-
+      else {
+        let addedProduct = {
+          nombre: product.nombre,
+          descripcion: product.descripcion,
+          codigo: product.codigo,
+          foto: product.foto,
+          precio: product.precio,
+          stock: product.stock,
+        }
+        addOneProduct(addedProduct);
+      }
     })
 
   } else {

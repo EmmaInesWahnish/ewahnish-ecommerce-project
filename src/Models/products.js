@@ -8,7 +8,7 @@ const ProductSchema = new Schema({
     nombre: { type: String, required: true, max: 100 },
     descripcion: { type: String, required: true, max: 100 },
     codigo: { type: String, required: true, max: 100 },
-    foto: { type: String, required: true },
+    foto: String,
     precio: { 
         type: Number,
         min: [300, 'Precio inferior al mínimo'], 

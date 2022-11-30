@@ -5,7 +5,7 @@ const addOneProduct = (addedProduct) => {
     let productId = '';
     const productRoute = `/api/productos/`
 
-    headers_object = build_header();
+    let headers_object = build_header();
 
     const requestOptions = {
         method: 'POST',

@@ -6,7 +6,7 @@ export const testRoute = async (req, res,) => {
 
 export const uploadRoute = async (req, res, next) => {
 
-  let url = '/uploads/' + req.file.originalname
+  let url = '/images/' + req.file.originalname
   let avatar = {
     avatar: url
   }
