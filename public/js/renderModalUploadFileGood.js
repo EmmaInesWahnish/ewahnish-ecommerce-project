@@ -1,6 +1,6 @@
 
 import renderLoginForm from './renderLoginForm.js';
-const renderModalUploadFile = async () => {
+const renderModalUploadFile = () => {
 
   let url = '';
 

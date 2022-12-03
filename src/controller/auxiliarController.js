@@ -1,6 +1,6 @@
 import auxiliarService from '../Models/Auxiliar.js';
 
-export const saveAuxurl = async (res, req) => {
+export const saveAuxurl = async (req, res) => {
 
     let _id = 1
     let auxurl = '/images/GPSC.png'
@@ -13,4 +13,18 @@ export const saveAuxurl = async (res, req) => {
     catch (error) {
         console.log(error)
     }
+}
+
+export const getAuxurl = async (req, res) => {
+    try {
+        const response = await auxiliarService.find({ _id: 1 });
+        res.json({
+            message:'Success',
+            response: response
+        })
+    }
+    catch (error) {
+        console.log(error)
+    }
+    
 }
