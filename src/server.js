@@ -7,6 +7,7 @@ import config from './configurations/dotenvConfig.js';
 import viewsRouter from './routers/viewsRouter.js';
 import sessionRouter from './routers/sessionRouter.js';
 import uploadRouter from './routers/uploadRouter.js';
+import auxiliarRouter from './routers/auxiliarRouter.js';
 import routerOrder from './routers/routerOrder.js';
 import ChatDaoMongoDb from './daos/ChatDaoMongoDb.js';
 import session from 'express-session';
@@ -66,6 +67,7 @@ app.use(
     passport.authenticate("jwt", { session: false }),    
     routerCart);
 app.use('/api/up', uploadRouter);
+app.use('/api/auxiliar', auxiliarRouter);
 app.use('/', viewsRouter);
 app.use('/api/sessions', sessionRouter);
 app.use(

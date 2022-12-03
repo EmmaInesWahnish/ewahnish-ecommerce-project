@@ -6,17 +6,17 @@ export const testRoute = async (req, res,) => {
 
 export const uploadRoute = async (req, res, next) => {
 
-  let url = '/images/' + req.file.filename
+  let url = '/images/' + req.file.originalname
   let avatar = {
     avatar: url
   }
 
-  console.log("here is the avatar >>> ", avatar)
   let file = req.file
   if (!file) {
     const error = new Error('Error subiendo archivo')
     error.httpStatusCode = 400
     return next(error)
   }
-  
+  await usersService.findOneAndUpdate({_id:req.session.user.id}, avatar, {returnOriginal: false})
+  res.redirect('/')
 }

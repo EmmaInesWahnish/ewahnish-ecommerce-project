@@ -16,8 +16,9 @@ const uploadFile = (thefile) => {
 
     fetch(uploadRoute, requestOptions)
         .then(async res => {
-          const data = await res.json();
-          console.log(data)
+          const filepath = await res();
+
+          console.log(filepath)
         })
         .catch((err) => ("Error occured", err));
 }

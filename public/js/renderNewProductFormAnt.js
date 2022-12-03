@@ -92,7 +92,8 @@ const renderNewProductForm = () => {
     code.addEventListener('change', function () {
       product.codigo = document.getElementById("code").value;
     })
-    photo.addEventListener('change', function () {
+    photo.addEventListener('click', function () {
+      document.getElementById("photo").value = renderModalUploadProduct()
       product.foto = document.getElementById("photo").value;
     })
     price.addEventListener('change', function () {

@@ -148,8 +148,9 @@ deleteCart.addEventListener('click', () => {
     renderModalDeleteCart()
 })
 
-upload.addEventListener('click', () => {
-    renderModalUploadFile()
+upload.addEventListener('click', async () => {
+    let picture = 'picture'
+    await renderModalUploadFile(picture)
 })
 
 listCart.addEventListener('click', () => {

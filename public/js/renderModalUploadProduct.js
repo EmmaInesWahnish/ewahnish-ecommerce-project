@@ -1,49 +1,59 @@
-const renderModalUploadProduct = () => {
+import build_header from './getHeaderUpload.js';
 
-    document.getElementById('uModal').style.display = 'block';
+let headers_object= build_header()
 
-    let closeModal = document.getElementById('uClose');
+const renderModalUploadProduct = (result) => {
 
-    const here = document.getElementById('here');
+  document.getElementById('uModal').style.display = 'block';
 
-    here.innerHTML = `<div id="root">
-                            <h2 class="form_title">Formulario para upload de archivos</h2>
-                            <form action="/api/up" enctype="multipart/form-data" method="POST">
+  let closeModal = document.getElementById('uClose');
+
+  const here = document.getElementById('here');
+
+  here.innerHTML = `<div id="root">
+                            <form id="uploadForm">
                               <div class="m-2">
-                                <input id="avatar"  accept="image/*" type="file" name="avatar" />
-                                <p><img id="output" width="200" /></p>
+                                <label for="files">Select file</label>
+                                <input id="files" type="file" name='FOTO' multiple/>
                               </div>
                               <div class="m-2">
-                                <input type="submit" value="Upload File" class="btn btn-success" />
+                                <button type="submit" class="btn btn-success">Enviar</button>
                               </div>
                             </form>
                     </div>`;
 
-    let root = document.getElementById('root')
+  let uploadForm = document.getElementById('uploadForm')
 
-    let avatar = document.getElementById('avatar')
+  let test = document.getElementById("files").value
 
-    avatar.addEventListener('change', (e) => {
-        let avatar = document.getElementById('avatar');
-        url = avatar.Name
-    })
+  console.log("La prueba ", test)
 
-    root.addEventListener('submit', submitForm)
+  uploadForm.addEventListener('submit', submitForm)
 
-    //avatar.addEventListener('change', showValue);
-
-    function submitForm(e) {
-        e.preventDefault();
-        document.getElementById('uModal').style.display = 'none';
+  function submitForm(e) {
+    const files = document.getElementById("files");
+    let formData = new FormData();
+    for (let i = 0; i < files.files.length; i++) {
+      formData.append("FOTO", files.files[i]);
     }
+    const upload_route = "/upload_files";
+    const requestOptions = {
+      method: 'POST',
+      headers: headers_object,
+      body: formData,
+    }
+    fetch(upload_route, requestOptions)
+      .then((res) => {
+        const data = res.json();
+        console.log("La respuesta ",data)
+      })
+      .finally(document.getElementById('uModal').style.display = 'none')
+      .catch((err) => ("Error occured", err))
+  }
 
-    closeModal.addEventListener('click', function () {
-        document.getElementById('uModal').style.display = 'none';
-    })
-
-    console.log("theUrl >>> ", url)
-
-    return url
+  closeModal.addEventListener('click', function () {
+    document.getElementById('uModal').style.display = 'none';
+  })
 
 }
 
