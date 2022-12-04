@@ -10,3 +10,4 @@
 {"level":"error","message":"404 - ruta no encontrada /js/renderProducts","service":"user-service","timestamp":"2022-12-04T15:37:23.309Z"}
 {"level":"error","message":"404 - ruta no encontrada /js/renderProducts","service":"user-service","timestamp":"2022-12-04T15:37:25.818Z"}
 {"level":"error","message":"404 - ruta no encontrada /undefined","service":"user-service","timestamp":"2022-12-04T16:24:10.913Z"}
+{"level":"error","message":"404 - ruta no encontrada /undefined","service":"user-service","timestamp":"2022-12-04T16:38:13.217Z"}
