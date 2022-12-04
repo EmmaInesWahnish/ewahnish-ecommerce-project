@@ -1,11 +1,20 @@
 import showOneProduct from './showOneProduct.js';
 import build_header from './getHeader.js';
+import getImage from './getImage.js';
+import { LocalStorageService } from './localStorageService.js'
 
 const addOneProduct = (addedProduct) => {
+    getImage();
+
     let productId = '';
-    const productRoute = `/api/productos/`
+
+    const productRoute = `/api/productos/`;
 
     let headers_object = build_header();
+
+    let auxurl = LocalStorageService.getItem("image");
+
+    addedProduct.foto = auxurl;
 
     const requestOptions = {
         method: 'POST',

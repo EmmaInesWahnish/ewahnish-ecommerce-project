@@ -10,8 +10,6 @@ import renderLoginForm from './renderLoginForm.js';
 
 import renderModalUploadFile from './renderModalUploadFile.js';
 
-import renderModalUploadFileAlternative from './renderModalUploadFileAlternative.js';
-
 import renderModalOneOrder from './renderModalOneOrder.js';
 
 import renderRegisterForm from './renderRegisterForm.js'
@@ -124,7 +122,9 @@ homePage.addEventListener('click', () => {
     renderHome();
 });
 
-createProduct.addEventListener('click', () => {
+createProduct.addEventListener('click', async () => {
+    let picture = 'picture'
+    await renderModalUploadFile(picture);
     renderNewProductForm();
 });
 
@@ -148,9 +148,9 @@ deleteCart.addEventListener('click', () => {
     renderModalDeleteCart()
 })
 
-upload.addEventListener('click', async () => {
+upload.addEventListener('click', () => {
     let picture = 'picture'
-    await renderModalUploadFile(picture)
+    renderModalUploadFile(picture)
 })
 
 listCart.addEventListener('click', () => {

@@ -1,5 +1,7 @@
+import getImage from './getImage.js'
 import addOneProduct from './addOneProduct.js';
 import renderHome from './renderHome.js';
+import renderModalUploadProduct from './renderModalUploadProduct.js';
 let product = {};
 const renderNewProductForm = async () => {
 
@@ -82,8 +84,6 @@ const renderNewProductForm = async () => {
     let quantity = document.getElementById("quantity");
     let validated = true;
 
-    let bt = document.getElementById("addProductButton")
-
     nomb.addEventListener('change', function () {
       product.nombre = document.getElementById("nomb").value;
     })
@@ -100,24 +100,20 @@ const renderNewProductForm = async () => {
       let ok = isValid(document.getElementById("price").value, 300)
       product.precio = document.getElementById("price").value;
       if (ok) {
-        validated = true;
-        bt.disabled = false;
+        validated = true
         product.precio = document.getElementById("price").value;
       } else {
-        validated = false;
-        bt.disabled = true;
+        validated = false
       }
     })
     quantity.addEventListener('change', function () {
       let ok = isValid(document.getElementById("quantity").value, 0)
       if (ok) {
-        validated = true;
-        bt.disabled = false
+        validated = true
         product.stock = document.getElementById("quantity").value;
       }
       else {
-        validated = false;
-        bt.disabled = true;
+        validated = false
       }
     })
 
