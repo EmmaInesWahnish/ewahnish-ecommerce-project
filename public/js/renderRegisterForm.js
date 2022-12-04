@@ -1,6 +1,6 @@
 import renderHome from "./renderHome.js";
-
-const renderregisterForm = () => {
+import { LocalStorageService } from "./localStorageService.js";
+const renderregisterForm = async () => {
 
     document.getElementById('activeCart').innerHTML = "";
     document.getElementById('cartNumber').innerHTML = "";
@@ -13,7 +13,7 @@ const renderregisterForm = () => {
     document.getElementById('register').innerHTML = "";
     document.getElementById('logout').innerHTML = "";
     document.getElementById('root').innerHTML = "";
-    document.getElementById('the-avatar').innerHTML ="";
+    document.getElementById('the-avatar').innerHTML = "";
     document.getElementById('orderButtons').innerHTML = "";
 
     const homePage = document.getElementById("homePage")
@@ -25,6 +25,8 @@ const renderregisterForm = () => {
     let hide = function (elem) {
         elem.style.display = 'none';
     };
+
+    let picture = 'picture';
 
     hide(homePage)
 
@@ -86,7 +88,12 @@ const renderregisterForm = () => {
             .then(result => result.json())
             .then(json => console.log(json))
             .finally(() => {
-                renderHome()
+                let newUser = {
+                    isNew:true,
+                    user_email: obj.email
+                }
+                LocalStorageService.setItem("newUser",newUser)
+                renderHome();
             })
             .catch(err => console.log(err));
     })

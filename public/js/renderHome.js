@@ -1,10 +1,15 @@
 import renderLoginForm from './renderLoginForm.js';
 import renderModalUploadFile from './renderModalUploadFile.js';
 import build_header from './getHeader.js';
+import { LocalStorageService } from './localStorageService.js';
 
 let headers_object = build_header();
 
 const renderHome = () => {
+
+    let newUser = LocalStorageService.getItem("newUser");
+
+    console.log("newUser ", newUser)
 
     document.getElementById('activeCart').innerHTML = "";
     document.getElementById('cartNumber').innerHTML = "";
@@ -17,7 +22,7 @@ const renderHome = () => {
     document.getElementById('register').innerHTML = "";
     document.getElementById('logout').innerHTML = "";
     document.getElementById('root').innerHTML = "";
-    document.getElementById('the-avatar').innerHTML ="";
+    document.getElementById('the-avatar').innerHTML = "";
     document.getElementById('orderButtons').innerHTML = "";
 
     const homePage = document.getElementById("homePage")
@@ -62,21 +67,24 @@ const renderHome = () => {
                 document.getElementById('avatar').value = session.user.avatar;
 
                 user_avatar = document.getElementById('user_avatar');
-
-                let changeAvatar = document.getElementById('user_avatar')
-        
-                changeAvatar.addEventListener('click', () => {
-                    let url=renderModalUploadFile();
-                    document.getElementById('the-avatar').innerHTML = `<img id="user_avatar" class="avatar" src="${url}"/> ${session.user.email} Logged in`
-                })
-        
+                if (newUser.isNew != null) {
+                    if ((newUser.isNew) && (newUser.user_email === session.user.email)) {
+                        let picture = 'picture';
+                        let newUser = {
+                            isNew: false,
+                            user_email: ' '
+                        }
+                        LocalStorageService.setItem("newUser", newUser);
+                        renderModalUploadFile('picture');
+                    }
+                }
             }
             else {
                 renderLoginForm();
             }
         })
         .catch(err => console.log(err))
-        
+
 }
 
 export default renderHome;
