@@ -13,6 +13,8 @@ const requestOptionsGet = {
 
 const getAndModifyOneProduct = async (productId) => {
     
+    await getImage();
+
     let newProduct = LocalStorageService.getItem("newProduct");
 
     const productRoute = `/api/productos/${productId}`
@@ -29,7 +31,6 @@ const getAndModifyOneProduct = async (productId) => {
                     product = data.product[0]
                 }
                 if ((newProduct != null) && (newProduct.isNew)) {
-                    getImage();
                     let auxurl = LocalStorageService.getItem("image");
                     console.log(auxurl)
                     product.foto = auxurl;

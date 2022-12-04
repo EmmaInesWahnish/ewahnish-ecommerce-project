@@ -3,7 +3,7 @@ import { LocalStorageService } from './localStorageService.js'
 
 let headers_object = build_header();
 
-const getImage = () => {
+const getImage = async () => {
 
     const imageRoute = `/api/auxiliar`
 

@@ -17,8 +17,8 @@ export const uploadRoute = async (req, res, next) => {
     return next(error)
   }
   try {
-    let response = await auxiliarService.findOneAndUpdate({ _id: 1 }, auxurl, { returnOriginal: false });
-    return response
+    await auxiliarService.findOneAndUpdate({ _id: 1 }, auxurl, { returnOriginal: false });
+    res.redirect('/');
   }
   catch (error) {
     console.log(error)

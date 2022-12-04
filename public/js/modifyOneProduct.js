@@ -19,7 +19,13 @@ const modifyOneProduct = (modifiedProduct) => {
     fetch(productRoute, requestOptions)
         .then(async res => {
             const data = await res.json();
-            if ((newProduct != null) && (!newProduct.isNew)) {
+            if (newProduct !== null) {
+                if (!newProduct.isNew) {
+                    alert('Modificación exitosa');
+                    let productId = modifiedProduct.id;
+                    showOneProduct(productId);
+                }
+            } else {
                 alert('Modificación exitosa');
                 let productId = modifiedProduct.id;
                 showOneProduct(productId);

@@ -1,8 +1,10 @@
 import addOneProduct from './addOneProduct.js';
 import renderHome from './renderHome.js';
+import renderModalUploadFile from './renderModalUploadFile.js';
+
 let product = {};
 const renderNewProductForm = async () => {
-
+  let picture = 'picture';
   document.getElementById('activeCart').innerHTML = "";
   document.getElementById('cartNumber').innerHTML = "";
   document.getElementById('productCards').innerHTML = "";
@@ -134,7 +136,7 @@ const renderNewProductForm = async () => {
 
     let formAdd = document.getElementById("addProductButton");
 
-    formAdd.addEventListener('click', function () {
+    formAdd.addEventListener('click', async function () {
       if (!validated) {
         alert("valores invalidos")
       }
@@ -147,7 +149,8 @@ const renderNewProductForm = async () => {
           precio: product.precio,
           stock: product.stock,
         }
-        addOneProduct(addedProduct);
+        await addOneProduct(addedProduct);
+        await renderModalUploadFile(picture);
       }
     })
 

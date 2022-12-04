@@ -3,18 +3,13 @@ import build_header from './getHeader.js';
 import getImage from './getImage.js';
 import { LocalStorageService } from './localStorageService.js'
 
-const addOneProduct = (addedProduct) => {
-    getImage();
+const addOneProduct = async (addedProduct) => {
 
     let productId = '';
 
     const productRoute = `/api/productos/`;
 
     let headers_object = build_header();
-
-    let auxurl = LocalStorageService.getItem("image");
-
-    addedProduct.foto = auxurl;
 
     const requestOptions = {
         method: 'POST',
@@ -33,7 +28,7 @@ const addOneProduct = (addedProduct) => {
                 isNew: true
             };
             LocalStorageService.setItem("newProduct", newProduct);
-            showOneProduct(productId);
+            //showOneProduct(productId);
         })
         .catch(error => {
             console.log('Se produjo el siguiente error: ', error);

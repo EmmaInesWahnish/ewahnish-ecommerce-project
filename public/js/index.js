@@ -123,8 +123,6 @@ homePage.addEventListener('click', () => {
 });
 
 createProduct.addEventListener('click', async () => {
-    let picture = 'picture'
-    await renderModalUploadFile(picture);
     renderNewProductForm();
 });
 
