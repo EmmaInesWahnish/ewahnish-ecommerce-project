@@ -1,4 +1,5 @@
 import build_header from './getHeader.js';
+import renderProducts from './renderProducts.js'
 
 let headers_object = build_header();
 
@@ -13,6 +14,7 @@ const deleteOneProduct = (productId) => {
         .then(async res => {
             
             const data = await res.json();
+            renderProducts();
         
         })
         .catch(err => console.log(err))

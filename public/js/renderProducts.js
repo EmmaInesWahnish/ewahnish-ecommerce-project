@@ -10,11 +10,33 @@ import findQobject from './findQobject.js';
 import cartInfo from './cartInfo.js';
 import getAllCarts from './getAllCarts.js';
 import build_header from './getHeader.js';
+import { LocalStorageService } from './localStorageService.js';
+import getImage from './getImage.js';
+import getAndModifyOneProduct from './getAndModifyOneProduct.js';
 
 let array = [];
 
+const headers_object = build_header();
+
+let noNewProduct = {
+    product_id: 0,
+    isNew: false
+}
+
+
 //element.parentNode.removeChild(element);
-const renderProducts = () => {
+const renderProducts = async () => {
+
+    let newProduct = LocalStorageService.getItem("newProduct");
+
+    if ((newProduct != null) && (newProduct.isNew)) {
+        await getAndModifyOneProduct(newProduct.product_id)
+        LocalStorageService.setItem("newProduct", noNewProduct)
+    }
+    else {
+        LocalStorageService.setItem("newProduct", noNewProduct)
+    }
+
     let qobject = [{}];
     let cart = [];
     let cartId = '';
@@ -47,8 +69,6 @@ const renderProducts = () => {
     };
 
     hide(homePage)
-
-    const headers_object = build_header();
 
     const requestOptions = {
         method: 'GET',

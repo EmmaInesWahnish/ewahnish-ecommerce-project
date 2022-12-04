@@ -28,7 +28,11 @@ const addOneProduct = (addedProduct) => {
             let productId
             const theProductId = data.theProductId;
             productId = theProductId;
-            alert(`Alta de producto ${productId} exitosa`);
+            let newProduct = {
+                product_id: productId,
+                isNew: true
+            };
+            LocalStorageService.setItem("newProduct", newProduct);
             showOneProduct(productId);
         })
         .catch(error => {

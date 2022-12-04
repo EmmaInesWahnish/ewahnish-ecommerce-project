@@ -5,3 +5,7 @@
 {"level":"error","message":"404 - ruta no encontrada /undefined","service":"user-service","timestamp":"2022-12-04T00:46:55.596Z"}
 {"level":"error","message":"404 - ruta no encontrada /undefined","service":"user-service","timestamp":"2022-12-04T00:47:38.930Z"}
 {"level":"error","message":"404 - ruta no encontrada /undefined","service":"user-service","timestamp":"2022-12-04T00:48:09.581Z"}
+{"level":"error","message":"404 - ruta no encontrada /favicon.ico","service":"user-service","timestamp":"2022-12-04T14:10:11.526Z"}
+{"level":"error","message":"404 - ruta no encontrada /js/renderProducts","service":"user-service","timestamp":"2022-12-04T15:36:49.575Z"}
+{"level":"error","message":"404 - ruta no encontrada /js/renderProducts","service":"user-service","timestamp":"2022-12-04T15:37:23.309Z"}
+{"level":"error","message":"404 - ruta no encontrada /js/renderProducts","service":"user-service","timestamp":"2022-12-04T15:37:25.818Z"}
