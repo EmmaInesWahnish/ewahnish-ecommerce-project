@@ -3,6 +3,7 @@ import renderHome from './renderHome.js';
 import createEmptyCart from './createEmptyCart.js';
 import getAllCarts from './getAllCarts.js';
 import { LocalStorageService } from './localStorageService.js';
+import renderModalUploadFile from './renderModalUploadFile.js';
 
 const renderLoginForm = () => {
 
@@ -94,21 +95,32 @@ const renderLoginForm = () => {
                     isAdmin = theStatus.payload.isAdmin
                     localStorage.setItem("isAdmin", isAdmin)
                     isAdmin = localStorage.getItem("isAdmin")
-                    if ((!newUser.isNew) && (newUser.user_email === "cart")) {
+                    if ((newUser.isNew != null) && (newUser.isNew)) {
                         try {
                             createEmptyCart(whichUser);
-                            let newUser = {
-                                isNew: false,
-                                user_email: " "
-                            }
-                            LocalStorageService.setItem("newUser", newUser);
                         }
                         catch (error) {
                             console.log('No se pudo crear el carrito')
                         }
                     }
                     cart_number = getAllCarts(whichUser);
-                    renderHome();
+                    if ((newUser.isNew != null) && (newUser.needAvatar === true)) {
+                        let newUser = {
+                            isNew: false,
+                            user_email: " ",
+                            needAvatar: "recover"
+                        }
+                        LocalStorageService.setItem("newUser", newUser);
+                        try{
+                            renderModalUploadFile('picture');
+                        }
+                        catch (error) {
+                            console.log('No se pudo crear el carrito')
+                        }
+                    }
+                    else {
+                        renderHome();
+                    }
                 }
                 else {
                     renderRegisterForm();

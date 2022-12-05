@@ -10,8 +10,6 @@ const renderHome = () => {
 
     let newUser = LocalStorageService.getItem("newUser");
 
-    console.log("newUser ", newUser)
-
     document.getElementById('activeCart').innerHTML = "";
     document.getElementById('cartNumber').innerHTML = "";
     document.getElementById('productCards').innerHTML = "";
@@ -69,21 +67,11 @@ const renderHome = () => {
 
                 user_avatar = document.getElementById('user_avatar');
                 if (newUser.isNew != null) {
-                    if ((newUser.isNew) && (newUser.user_email === session.user.email)) {
-                        let picture = 'picture';
+                    if ((newUser.needAvatar === 'recover')) {
                         let newUser = {
                             isNew: false,
-                            user_email: session.user.email
-                        }
-                        LocalStorageService.setItem("newUser", newUser);
-                        renderModalUploadFile('picture');
-                    }
-                }
-                if (newUser.isNew != null) {
-                    if ((!newUser.isNew) && (newUser.user_email === session.user.email)) {
-                        let newUser = {
-                            isNew: false,
-                            user_email: "cart"
+                            user_email: "cart",
+                            needAvatar:false
                         }
                         LocalStorageService.setItem("newUser", newUser);
                         modifyUserAvatar(session.user.email)

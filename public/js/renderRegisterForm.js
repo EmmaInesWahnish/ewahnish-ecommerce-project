@@ -1,4 +1,5 @@
 import renderHome from "./renderHome.js";
+import renderLoginForm from './renderLoginForm.js';
 import { LocalStorageService } from "./localStorageService.js";
 const renderregisterForm = async () => {
 
@@ -90,10 +91,11 @@ const renderregisterForm = async () => {
             .finally(() => {
                 let newUser = {
                     isNew:true,
-                    user_email: obj.email
+                    user_email: obj.email,
+                    needAvatar: true
                 }
                 LocalStorageService.setItem("newUser",newUser)
-                renderHome();
+                renderLoginForm();
             })
             .catch(err => console.log(err));
     })
