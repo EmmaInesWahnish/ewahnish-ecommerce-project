@@ -83,7 +83,7 @@ const renderHome = () => {
                     if ((!newUser.isNew) && (newUser.user_email === session.user.email)) {
                         let newUser = {
                             isNew: false,
-                            user_email: " "
+                            user_email: "cart"
                         }
                         LocalStorageService.setItem("newUser", newUser);
                         modifyUserAvatar(session.user.email)

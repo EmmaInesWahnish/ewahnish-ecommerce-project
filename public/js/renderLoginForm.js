@@ -68,6 +68,8 @@ const renderLoginForm = () => {
 
     let cart_number = '0';
 
+    let newUser = LocalStorageService.getItem("newUser");
+
     form.addEventListener('submit', evt => {
         evt.preventDefault();
         let data = new FormData(form);
@@ -92,9 +94,14 @@ const renderLoginForm = () => {
                     isAdmin = theStatus.payload.isAdmin
                     localStorage.setItem("isAdmin", isAdmin)
                     isAdmin = localStorage.getItem("isAdmin")
-                    if (cart_number == '0' && (isAdmin === 'false')) {
+                    if ((!newUser.isNew) && (newUser.user_email === "cart")) {
                         try {
                             createEmptyCart(whichUser);
+                            let newUser = {
+                                isNew: false,
+                                user_email: " "
+                            }
+                            LocalStorageService.setItem("newUser", newUser);
                         }
                         catch (error) {
                             console.log('No se pudo crear el carrito')
