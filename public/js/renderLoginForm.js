@@ -2,7 +2,6 @@ import renderRegisterForm from './renderRegisterForm.js';
 import renderHome from './renderHome.js';
 import createEmptyCart from './createEmptyCart.js';
 import getAllCarts from './getAllCarts.js';
-import getUserCart from './getUserCart.js';
 import { LocalStorageService } from './localStorageService.js';
 
 const renderLoginForm = () => {
@@ -63,11 +62,11 @@ const renderLoginForm = () => {
 
     let theStatus = "";
 
-    let cart_number = '0';
-
     let isAdmin = 'true';
 
     let whichUser = '';
+
+    let cart_number = '0';
 
     form.addEventListener('submit', evt => {
         evt.preventDefault();
@@ -87,13 +86,11 @@ const renderLoginForm = () => {
             .then(json => theStatus = json)
             .finally(() => {
                 if (theStatus.status === 'success') {
-                    LocalStorageService.setItem("token",theStatus.data)
+                    LocalStorageService.setItem("token", theStatus.data)
                     whichUser = theStatus.payload.id;
-                    localStorage.setItem("whichUser",whichUser);                    
-                    cart_number = getAllCarts(whichUser);
-                    console.log("In renderProducts >>> ", cart_number);
+                    localStorage.setItem("whichUser", whichUser);
                     isAdmin = theStatus.payload.isAdmin
-                    localStorage.setItem("isAdmin",isAdmin)
+                    localStorage.setItem("isAdmin", isAdmin)
                     isAdmin = localStorage.getItem("isAdmin")
                     if (cart_number == '0' && (isAdmin === 'false')) {
                         try {
@@ -103,6 +100,7 @@ const renderLoginForm = () => {
                             console.log('No se pudo crear el carrito')
                         }
                     }
+                    cart_number = getAllCarts(whichUser);
                     renderHome();
                 }
                 else {

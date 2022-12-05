@@ -1,14 +1,14 @@
 import { LocalStorageService } from './localStorageService.js';
 import getImage from './getImage.js';
 
-const modifyUserAvatar = async (user_id) => {
+const modifyUserAvatar = async (user_email) => {
 
     await getImage();
 
     let auxurl = LocalStorageService.getItem("image");
 
     let obj = {
-        user_id: user_id,
+        user_email: user_email,
         auxurl: auxurl
     }
 
@@ -23,9 +23,6 @@ const modifyUserAvatar = async (user_id) => {
     fetch(avatarRoute, requestOptions)
         .then(result => result.json())
         .then(json => theStatus = json)
-        .finally(() => {
-            return theStatus;
-        })
         .catch(err => console.log(err))
 }
 export default modifyUserAvatar

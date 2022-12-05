@@ -1,5 +1,6 @@
 import renderLoginForm from './renderLoginForm.js';
 import renderModalUploadFile from './renderModalUploadFile.js';
+import modifyUserAvatar from './modifyUserAvatar.js';
 import build_header from './getHeader.js';
 import { LocalStorageService } from './localStorageService.js';
 
@@ -72,10 +73,20 @@ const renderHome = () => {
                         let picture = 'picture';
                         let newUser = {
                             isNew: false,
-                            user_email: ' '
+                            user_email: session.user.email
                         }
                         LocalStorageService.setItem("newUser", newUser);
                         renderModalUploadFile('picture');
+                    }
+                }
+                if (newUser.isNew != null) {
+                    if ((!newUser.isNew) && (newUser.user_email === session.user.email)) {
+                        let newUser = {
+                            isNew: false,
+                            user_email: " "
+                        }
+                        LocalStorageService.setItem("newUser", newUser);
+                        modifyUserAvatar(session.user.email)
                     }
                 }
             }
