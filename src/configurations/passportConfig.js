@@ -48,7 +48,14 @@ const initializePassport = () => {
         try {
             if (!email || !password) return done(null, false);
             if ((email === config.envs.ADMIN_EMAIL ) && (password === config.envs.ADMIN_PWD)) {
-                let user = await usersService.findOne({ email: email });
+                let user ={
+                    _id:'631927924e599ac9efbed9d0',
+                    email: email,
+                    first_name:"Admin",
+                    last_name:"Admin",
+                    cart_number: "",
+                    avatar: "/uploads/generic-avatar.jpg"                    
+                }                
                 user.isAdmin = true;
                 return done(null, user)
             }
