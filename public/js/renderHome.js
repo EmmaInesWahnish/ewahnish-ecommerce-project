@@ -1,6 +1,5 @@
 import renderLoginForm from './renderLoginForm.js';
-import renderModalUploadFile from './renderModalUploadFile.js';
-import modifyUserAvatar from './modifyUserAvatar.js';
+import modifyAvatar from './modifyAvatar.js';
 import build_header from './getHeader.js';
 import { LocalStorageService } from './localStorageService.js';
 
@@ -28,6 +27,8 @@ const renderHome = () => {
 
     let cartId = '';
 
+    let avatar = ''
+
     let user_avatar = '/uploads/generic-avatar.jpg';
 
     let user_message = 'Si desea personalizar su avatar puede utilizar Upload Avatar en la barra de menu'
@@ -45,13 +46,13 @@ const renderHome = () => {
 
     const requestOptions = {
         method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
+        headers: headers_object,
     };
 
     fetch(homeRoute, requestOptions)
         .then(result => result.json())
         .then(json => session = json)
-        .finally(() => {
+        .finally(async () => {
             if (session.user) {
                 if (session.user.avatar !== null && session.user.avatar !== "" && session.user.avatar) {
                     user_avatar = session.user.avatar;
@@ -64,24 +65,37 @@ const renderHome = () => {
                 document.getElementById('first_name').value = session.user.first_name;
                 document.getElementById('last_name').value = session.user.last_name;
                 document.getElementById('avatar').value = session.user.avatar;
-
+                avatar = session.user.avatar;
                 user_avatar = document.getElementById('user_avatar');
                 if (newUser.isNew != null) {
                     if ((newUser.needAvatar === 'recover')) {
                         let newUser = {
                             isNew: false,
                             user_email: "cart",
-                            needAvatar:false
+                            needAvatar: false
                         }
                         LocalStorageService.setItem("newUser", newUser);
-                        modifyUserAvatar(session.user.email)
+                        await modifyAvatar(session.user.email)
                     }
                 }
-            }
-            else {
-                renderLoginForm();
-            }
-        })
+                if (avatar == '/uploads/generic-avatar.jpg') {
+                    if (session.user.isAdmin == false) {
+                        let newAvatar = LocalStorageService.getItem("image");
+                        console.log(newAvatar)
+                        document.getElementById('the-avatar').innerHTML = `<img id="user_avatar" class="avatar" src="${newAvatar}"/> ${session.user.email} Logged in`
+                    }
+                    else {
+                        console.log("Sale por primer else >>>> ", avatar, " ", session.user.isAdmin)
+                    }
+                }
+                else {
+                    console.log("Sale por segundo else >>>> ", avatar, " ", session.user.isAdmin)
+                }
+                }
+                else {
+                    renderLoginForm();
+                }
+            })
         .catch(err => console.log(err))
 
 }
