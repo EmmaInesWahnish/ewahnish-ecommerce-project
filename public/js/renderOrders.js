@@ -2,6 +2,14 @@ import renderHome from './renderHome.js';
 import emptyACart from './emptyACart.js';
 import modifyOneProduct from './modifyOneProduct.js';
 import ModifiedProduct from '../Classes/ModifiedProduct.js';
+import build_header from './getHeader.js';
+
+let headers_object = build_header();
+
+const requestOptionsGet = {
+    method: 'GET',
+    headers: headers_object
+}
 
 const renderOrders = (orderNumber, user_cart) => {
     document.getElementById('activeCart').innerHTML = "";
@@ -23,9 +31,9 @@ const renderOrders = (orderNumber, user_cart) => {
         elem.style.display = 'none';
     };
 
-    let first_name = '';
+    let name = '';
 
-    let last_name = '';
+    let phone = '';
 
     let theAddress = document.getElementById('theAddress').value;
 
@@ -35,7 +43,7 @@ const renderOrders = (orderNumber, user_cart) => {
 
     const orderRoute = `/api/ordenes/${orderNumber}`
 
-    fetch(orderRoute)
+    fetch(orderRoute, requestOptionsGet)
         .then(res => res.json())
         .then(data => {
             if (data.message === "orden no encontrada") {
@@ -46,8 +54,8 @@ const renderOrders = (orderNumber, user_cart) => {
 
                 const whichDb = data.whichDb;
 
-                first_name = data.user_fname;
-                last_name = data.user_lname;
+                name = data.user_name;
+                phone = data.user_phone;
 
                 let productos = []
 
@@ -77,7 +85,7 @@ const renderOrders = (orderNumber, user_cart) => {
 
                 const cliente = document.getElementById('cliente');
 
-                cliente.innerHTML = `A nombre de ${first_name} ${last_name}`;
+                cliente.innerHTML = `A nombre de ${name}`;
 
                 const tableHead = document.createElement('tr');
 
@@ -202,8 +210,8 @@ const renderOrders = (orderNumber, user_cart) => {
 
         let myOrder = {
             delivery_address: theAddress,
-            first_name: first_name,
-            last_name: last_name,
+            name: name,
+            phone: phone,
             order: order
         };
 

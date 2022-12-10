@@ -2,6 +2,7 @@ import renderLoginForm from './renderLoginForm.js';
 import modifyAvatar from './modifyAvatar.js';
 import build_header from './getHeader.js';
 import { LocalStorageService } from './localStorageService.js';
+import renderProducts from './renderProducts.js';
 
 let headers_object = build_header();
 
@@ -27,7 +28,7 @@ const renderHome = () => {
 
     let cartId = '';
 
-    let avatar = ''
+    let avatar = '';
 
     let user_avatar = '/uploads/generic-avatar.jpg';
 
@@ -60,13 +61,13 @@ const renderHome = () => {
                     user_message = '';
                 }
                 show(homePage)
-                document.getElementById('welcome').innerHTML = `Te damos la bienvenida ${session.user.first_name}! 👋 <p>${user_message}</p>`;
+                document.getElementById('welcome').innerHTML = `Te damos la bienvenida ${session.user.name}! 👋 <p>${user_message}</p>`;
                 document.getElementById('email').value = session.user.email;
-                document.getElementById('first_name').value = session.user.first_name;
-                document.getElementById('last_name').value = session.user.last_name;
+                document.getElementById('name').value = session.user.name;
+                document.getElementById('phone').value = session.user.phone;
                 document.getElementById('avatar').value = session.user.avatar;
                 avatar = session.user.avatar;
-                user_avatar = document.getElementById('user_avatar');
+                user_avatar = document.getElementById('user_avatar').value;
                 if (newUser.isNew != null) {
                     if ((newUser.needAvatar === 'recover')) {
                         let newUser = {
@@ -91,11 +92,13 @@ const renderHome = () => {
                 else {
                     console.log("Sale por segundo else >>>> ", avatar, " ", session.user.isAdmin)
                 }
-                }
-                else {
-                    renderLoginForm();
-                }
-            })
+                renderProducts()
+
+            }
+            else {
+                renderLoginForm();
+            }
+        })
         .catch(err => console.log(err))
 
 }
