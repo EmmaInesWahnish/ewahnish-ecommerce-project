@@ -124,7 +124,6 @@ const renderNewProductForm = async () => {
     })
 
     const isValid = (amount, limit) => {
-      console.log(amount,limit)
       if (amount > limit) {
         return true
       }
@@ -155,7 +154,7 @@ const renderNewProductForm = async () => {
     })
 
   } else {
-    alert("Operacion no autorizada")
+    alert("Para poder dar dar de alta productos, debe ingresar con perfil de administrador")
     renderHome()
   }
 

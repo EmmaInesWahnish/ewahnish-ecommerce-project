@@ -30,9 +30,9 @@ const renderHome = () => {
 
     let avatar = '';
 
-    let user_avatar = '/uploads/generic-avatar.jpg';
+    let user_message = '';
 
-    let user_message = 'Si desea personalizar su avatar puede utilizar Upload Avatar en la barra de menu'
+    let user_avatar = '/uploads/generic-avatar.jpg';
 
     let show = function (elem) {
         elem.style.display = 'block';
@@ -64,7 +64,6 @@ const renderHome = () => {
                 document.getElementById('welcome').innerHTML = `Te damos la bienvenida ${session.user.name}! 👋 <p>${user_message}</p>`;
                 document.getElementById('email').value = session.user.email;
                 document.getElementById('name').value = session.user.name;
-                document.getElementById('phone').value = session.user.phone;
                 document.getElementById('avatar').value = session.user.avatar;
                 avatar = session.user.avatar;
                 user_avatar = document.getElementById('user_avatar').value;
@@ -79,24 +78,14 @@ const renderHome = () => {
                         await modifyAvatar(session.user.email)
                     }
                 }
-                if (avatar == '/uploads/generic-avatar.jpg') {
-                    if (session.user.isAdmin == false) {
-                        let newAvatar = LocalStorageService.getItem("image");
-                        console.log(newAvatar)
-                        document.getElementById('the-avatar').innerHTML = `<img id="user_avatar" class="avatar" src="${newAvatar}"/> ${session.user.email} Logged in`
-                    }
-                    else {
-                        console.log("Sale por primer else >>>> ", avatar, " ", session.user.isAdmin)
+                if (avatar === '/uploads/generic-avatar.jpg') {
+                    if (session.user.isAdmin === false) {
+                        setTimeout(() => {
+                            let newAvatar = LocalStorageService.getItem("image");
+                            document.getElementById('the-avatar').innerHTML = `<img id="user_avatar" class="avatar" src="${newAvatar}"/> ${session.user.email} Logged in`
+                        }, 1000)
                     }
                 }
-                else {
-                    console.log("Sale por segundo else >>>> ", avatar, " ", session.user.isAdmin)
-                }
-                let chat = LocalStorageService.getItem("chat")
-                if (chat === 0) {
-                    renderProducts()
-                }
-
             }
             else {
                 renderLoginForm();

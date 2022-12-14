@@ -1,6 +1,10 @@
+import winston from 'winston';
+import logConfiguration from '../js/gralLogger.js'
 import jwt from 'jsonwebtoken';
 import config from '../configurations/dotenvConfig.js';
 import usersService from '../Models/Users.js';
+
+const ilogger = winston.createLogger(logConfiguration);
 
 export const sessionRegister = async (req, res) => {
     res.status(200).send({ status: "success", payload: req.session.user })
@@ -24,8 +28,10 @@ export const sessionLogin = async (req, res) => {
         id: req.user._id
     };
     const body = { id: req.user.id };
-    const token = jwt.sign({ user: body }, config.server.JWT.SECRET_KEY);
-
+    const token = jwt.sign({ 
+        user: body }, 
+        config.server.JWT.SECRET_KEY,
+        {expiresIn:config.expires_in});
 
     let userEmail = req.session.user.email;
 
@@ -34,8 +40,7 @@ export const sessionLogin = async (req, res) => {
     let payload = {
         token: decodedToken, session: req.session.user
     }
-
-    console.log("Token >>> ", payload)
+    ilogger.info(payload);
 
     res.status(200).send({ status: "success", payload: req.session.user, data: token })
 }

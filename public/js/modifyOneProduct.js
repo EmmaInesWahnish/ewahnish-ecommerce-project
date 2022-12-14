@@ -21,12 +21,10 @@ const modifyOneProduct = (modifiedProduct) => {
             const data = await res.json();
             if (newProduct !== null) {
                 if (!newProduct.isNew) {
-                    alert('Modificación exitosa');
                     let productId = modifiedProduct.id;
                     showOneProduct(productId);
                 }
             } else {
-                console.log("la data",data);
                 let productId = modifiedProduct.id;
                 showOneProduct(productId);
             }

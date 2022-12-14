@@ -13,18 +13,17 @@ import build_header from './getHeader.js';
 import { LocalStorageService } from './localStorageService.js';
 import getAndModifyOneProduct from './getAndModifyOneProduct.js';
 
-let array = [];
-
-const headers_object = build_header();
-
-let noNewProduct = {
-    product_id: 0,
-    isNew: false
-}
-
 
 //element.parentNode.removeChild(element);
 const renderProducts = async () => {
+    let array = [];
+
+    const headers_object = build_header();
+
+    let noNewProduct = {
+        product_id: 0,
+        isNew: false
+    }
 
     let newProduct = LocalStorageService.getItem("newProduct");
 
@@ -97,8 +96,10 @@ const renderProducts = async () => {
 
             idProducts = JSON.parse(localStorage.getItem('cart'))
 
+            if(idProducts === null){idProducts = []}
+
             document.getElementById('productCards').innerHTML = "";
-            
+
             LocalStorageService.setItem("chat", 1);
 
             const cardContainer = document.getElementById('productCards')
@@ -137,13 +138,6 @@ const renderProducts = async () => {
 
                 if (isAdmin === 'true') {
                     let i = findQobject(qobject, product.id);
-
-                    for (let j = 0; j < idProducts.length; j++) {
-                        if (idProducts[j].id === product.id) {
-                            theValue = Number(idProducts[j].cantidad);
-                            qobject[i].value = theValue;
-                        }
-                    }
 
                     buttons.innerHTML = `<div class="flex-container-button-group card-footer">
                                         <button style="width:200px" 
@@ -186,13 +180,14 @@ const renderProducts = async () => {
 
                 } else {
                     let i = findQobject(qobject, product.id);
-
-                    for (let j = 0; j < idProducts.length; j++) {
-                        if (idProducts[j].id === product.id) {
-                            theValue = Number(idProducts[j].cantidad);
-                            qobject[i].value = theValue;
+                    //if (idProducts != null) {
+                        for (let j = 0; j < idProducts.length; j++) {
+                            if (idProducts[j].id === product.id) {
+                                theValue = Number(idProducts[j].cantidad);
+                                qobject[i].value = theValue;
+                            }
                         }
-                    }
+                    //}
 
                     let quantity = qobject[i].value;
 
