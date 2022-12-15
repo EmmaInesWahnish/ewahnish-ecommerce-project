@@ -1,0 +1,3 @@
+{"level":"info","message":{"session":{"avatar":"/images/1670636895814-avatar06F.png","cart_number":"0","delivery_address":"Borges 2802 Olivos","email":"ewahnish@gmail.com","id":"6393e52fcd846a61499aad78","isAdmin":false,"name":"Emma Wahnish","phone":""},"token":{"exp":1671124924,"iat":1671121324,"user":{"id":"6393e52fcd846a61499aad78"}}},"service":"Logging-service","timestamp":"2022-12-15T16:22:04.240Z"}
+{"level":"info","message":"nodemailer message [object Object]","service":"Logging-service","timestamp":"2022-12-15T16:23:03.368Z"}
+{"level":"info","message":"nodemailer message [object Object]","service":"Logging-service","timestamp":"2022-12-15T16:23:06.043Z"}
