@@ -77,9 +77,9 @@ El servidor se encuentra configurado en modo cluster e inicia tantos procesos de
 
 Vistas especiales:
 Se han generado tres vistas con información adicional, utilizando el motor de plantillas handlebars:
-•	/server_check: verifica que el servidor se encuentre activo
-•	/server_info: brinda información del sistema
-•	/configuration_info: brinda información de la configuración del sistema
+-	/server_check: verifica que el servidor se encuentre activo
+-	/server_info: brinda información del sistema
+-	/configuration_info: brinda información de la configuración del sistema
 
 Las vistas estarán disponibles cuando el usuario se encuentre logueado. 
 La vista /configuration_info solo está disponible para perfil administrador.
@@ -95,15 +95,15 @@ Mediante la barra de navegación también se puede acceder a los productos, carr
 
 Las vistas especiales no fueron incluidas en la barra de navegación:
  
-•	/server_check: se accede colocando ‘/server_check’ a continuación de la url
-•	/server_info: se accede colocando ‘/server_info’ a continuación de la url
-•	/configuration_info: se accede colocando ‘/configuration_info’ a continuación de la url
+-	/server_check: se accede colocando ‘/server_check’ a continuación de la url
+-	/server_info: se accede colocando ‘/server_info’ a continuación de la url
+-	/configuration_info: se accede colocando ‘/configuration_info’ a continuación de la url
 
 Listado de Productos
 
 Los productos se despliegan en la pantalla en forma de tarjetas. Los usuarios, al ingresar, verán tarjetas como la que se muestra a continuación, donde los botones se encuentran diseñados para efectuar la compra:
 
-
+![Alt text](/images/imagen_user.png)
 
 
 
