@@ -1,0 +1,4 @@
+{"level":"error","message":"Cannot read properties of undefined (reading 'isAdmin')","service":"Logging-service","timestamp":"2022-12-15T11:43:20.667Z"}
+{"level":"error","message":"Worker","service":"Logging-service","timestamp":"2022-12-15T11:43:21.228Z"}
+{"level":"error","message":"Cannot read properties of undefined (reading 'isAdmin')","service":"Logging-service","timestamp":"2022-12-15T11:43:21.243Z"}
+{"level":"error","message":"Worker","service":"Logging-service","timestamp":"2022-12-15T11:43:21.769Z"}
