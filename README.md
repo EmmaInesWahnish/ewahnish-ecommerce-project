@@ -103,7 +103,8 @@ Listado de Productos
 
 Los productos se despliegan en la pantalla en forma de tarjetas. Los usuarios, al ingresar, verán tarjetas como la que se muestra a continuación, donde los botones se encuentran diseñados para efectuar la compra:
 
-![Alt text](/images/imagen_user.png)
+![image](https://user-images.githubusercontent.com/91384694/207990649-1544ce47-2ec9-4a45-b3c1-0bc472a57be0.png)
+
 
 
 
