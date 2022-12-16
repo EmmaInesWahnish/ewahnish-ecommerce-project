@@ -106,6 +106,8 @@ Los productos se despliegan en la pantalla en forma de tarjetas. Los usuarios, a
 
 Cuando ingrese el administrador, el listado de productos se verá diferente, ya que los botones en este caso están diseñados para que el administrador pueda modificar y eliminar productos
 
+![image](https://user-images.githubusercontent.com/91384694/207992492-e93cab73-40b3-4e41-8bde-bd5885f6c238.png)
+
 
 
 
