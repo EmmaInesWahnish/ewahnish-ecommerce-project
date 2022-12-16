@@ -132,3 +132,5 @@ Cuando un usuario se registra:
 
 Cuando se genera una orden de compra:
 
+![image](https://user-images.githubusercontent.com/91384694/207995699-f67a1e59-180a-460c-acc6-40ea27feba77.png)
+
