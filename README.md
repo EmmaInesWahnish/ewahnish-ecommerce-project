@@ -115,3 +115,8 @@ Para agregar un producto al carrito, se hace click en los botones ‘+’ y ‘-
 Una vez que se han incorporado al carrito los productos deseados, se pueden listar los mismos seleccionando la opción ‘LISTAR CARRITO’.
 
 ![image](https://user-images.githubusercontent.com/91384694/207993999-cc5c31a6-6a72-439d-a635-c507b07143b6.png)
+
+Haciendo click en el botón ‘CONTINUAR’ se regresa a la página principal
+ 
+Haciendo click en ‘COMPRAR’ se genera la orden de compra y se despliega un modal que permite visualizarla y enviarla por correo al mail del usuario.
+
