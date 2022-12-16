@@ -114,6 +114,7 @@ Para agregar un producto al carrito, se hace click en los botones ‘+’ y ‘-
 
 Una vez que se han incorporado al carrito los productos deseados, se pueden listar los mismos seleccionando la opción ‘LISTAR CARRITO’.
 
+![image](https://user-images.githubusercontent.com/91384694/207993522-79f8a185-d5d3-476e-a6a9-33873bded7f2.png)
 
 
 
