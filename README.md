@@ -83,7 +83,7 @@ Se han generado tres vistas con información adicional, utilizando el motor de p
 Las vistas estarán disponibles cuando el usuario se encuentre logueado. 
 La vista /configuration_info solo está disponible para perfil administrador.
 
-##Frontend:
+## Frontend:
 
 Para el desarrollo del frontend se ha utilizado mayoritariamente javascript, y para las vistas especiales, el motor de plantillas handlebars.
 
