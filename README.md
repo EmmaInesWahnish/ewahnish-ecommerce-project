@@ -33,21 +33,21 @@ El backend está desarrollado con node js y se han utilizado las siguientes bibl
 Se han utilizado las siguientes variables de entorno:
 
 #### .env.example
--NODE_ENV=development
--MODE=CLUSTER
--URL=Acá se coloca el enlace de acceso a Mongo DB
--SELECTED_DB=Acá se coloca la base de datos seleccionada - En -nuestro caso MONGODB
--ADMIN_PWD=Acá se coloca la contraseña del administrador 
--ADMIN_EMAIL=Acá se coloca el email 
--SESSION_KEY=Acá se coloca el session secret 
--JWT_SECRET_KEY=Acá se coloca el JWT secret
--LOG_LEVEL=Acá se coloca el nivel de logging
--MAIL_AUTH_USER=Acá se coloca el email de autenticación de google
--MAIL_AUTH_PASS=Acá se coloca la contraseña de autorización google
--MAIL_FROM=Acá se coloca el email de fantasía con el que se envían los mails
--MAIL_TO=Acá se coloca el mail receptor de mensajes
--TIME_TO_LIVE=600Aca se coloca el tiempo de expiración de la sesión
--EXPIRATION_IN=Acá se coloca expiración de JWT token
+- NODE_ENV=development
+- MODE=CLUSTER
+- URL=Acá se coloca el enlace de acceso a Mongo DB
+- SELECTED_DB=Acá se coloca la base de datos seleccionada, en nuestro caso MONGODB
+- ADMIN_PWD=Acá se coloca la contraseña del administrador 
+- ADMIN_EMAIL=Acá se coloca el email 
+- SESSION_KEY=Acá se coloca el session secret 
+- JWT_SECRET_KEY=Acá se coloca el JWT secret
+- LOG_LEVEL=Acá se coloca el nivel de logging
+- MAIL_AUTH_USER=Acá se coloca el email de autenticación de google
+- MAIL_AUTH_PASS=Acá se coloca la contraseña de autorización google
+- MAIL_FROM=Acá se coloca el email de fantasía con el que se envían los mails
+- MAIL_TO=Acá se coloca el mail receptor de mensajes
+- TIME_TO_LIVE=600Aca se coloca el tiempo de expiración de la sesión
+- EXPIRATION_IN=Acá se coloca expiración de JWT token
 
 Se han generado cinco grupos de rutas principales:
 
@@ -107,6 +107,13 @@ Los productos se despliegan en la pantalla en forma de tarjetas. Los usuarios, a
 Cuando ingrese el administrador, el listado de productos se verá diferente, ya que los botones en este caso están diseñados para que el administrador pueda modificar y eliminar productos
 
 ![image](https://user-images.githubusercontent.com/91384694/207992492-e93cab73-40b3-4e41-8bde-bd5885f6c238.png)
+
+**Proceso de compra:**
+
+Para agregar un producto al carrito, se hace click en los botones ‘+’ y ‘-‘ hasta lograr la cantidad deseada y luego se hace click en ‘AGREGAR AL CARRITO’.
+
+Una vez que se han incorporado al carrito los productos deseados, se pueden listar los mismos seleccionando la opción ‘LISTAR CARRITO’.
+
 
 
 
