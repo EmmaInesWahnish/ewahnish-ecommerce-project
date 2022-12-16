@@ -122,4 +122,10 @@ Haciendo click en ‘COMPRAR’ se genera la orden de compra y se despliega un m
 
 ![image](https://user-images.githubusercontent.com/91384694/207994725-9e2de03d-a874-491f-bb15-924c55b5b0f8.png)
 
+**Envío de e-mails**
+
+Se realiza envío de email en dos oportunidades:
+
+Cuando un usuario se registra:
+
 
