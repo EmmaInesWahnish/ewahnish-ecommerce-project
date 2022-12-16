@@ -1,10 +1,10 @@
 # ewahnish-ecommerce-project
 
-##Descripción del Proyecto
+## Descripción del Proyecto
 
 El proyecto incluye el backend y frontend de una aplicación de e-commerce que vende productos de una ferretería industrial.
 
-###Backend:
+### Backend:
 
 El backend está desarrollado con node js y se han utilizado las siguientes bibliotecas de node js:
 
@@ -63,18 +63,18 @@ La arquitectura del servidor dispone de las capas de: ruteo, controlador, servic
 **Importante:** El controlador de productos dispone de un chequeo en las rutas POST, y DELETE mediante el cual el único usuario que puede agregar o eliminar productos, es el usuario administrador. 
 Se permite la actualización de producto por parte del usuario cuando el usuario genera la orden de compra, que actualizará el stock de los productos involucrados.
 
-####Estrategia de autenticación: 
+#### Estrategia de autenticación: 
 La estrategia de autenticación se basa en la estrategia local de passport y passport-jwt. 
 Cuando un usuario se registra, se le solicita que envíe email (email), password (password), password re tipeada (password2), nombre (name), teléfono (phone) y edad (age). Si bien el frontend valida que las dos contraseñas enviadas coincidan, el backend también valida este dato. Para almacenar las contraseñas de manera encriptada en la base de datos, se ha utilizado bcrypt.
 
-####Manejo de errores:
+#### Manejo de errores:
 Para el logging de errores se ha utilizado ‘winston’. Los logs se almacenan en el servidor:
 -	error.log para errores
 -	warn.log para advertencias
 -	info.log para información
 El servidor se encuentra configurado en modo cluster e inicia tantos procesos de tipo “Worker” como el mínimo entre dos y el numero de procesadores disponibles. Se ha configurado que cuando un proceso “Worker” finaliza, el servidor arranque otro y loguee la finalización del “Worker” que falló. Esto protege al proceso de caídas, superando la limitación de node js de ser single thread.
 
-####Vistas especiales:
+#### Vistas especiales:
 Se han generado tres vistas con información adicional, utilizando el motor de plantillas handlebars:
 -	/server_check: verifica que el servidor se encuentre activo
 -	/server_info: brinda información del sistema
